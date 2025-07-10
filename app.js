@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+    require('dotenv').config();
+}
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -7,13 +11,18 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const Review = require("./models/review.js");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
+
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
 
 const port = 8080;
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+
+const dbUrl = process.env.ATLASDB_URL;
+
 const wrapAsync = require("./utils/wrapAsync.js");
 const ExpressError = require("./utils/ExpressError.js");
 const { throws } = require("assert");
@@ -26,7 +35,7 @@ const userRouter = require("./routes/user.js");
 
 
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
 }
 
 main()
@@ -41,10 +50,6 @@ app.listen(port, (req, res) => {
     console.log(`Server is listening to port ${port}`);
 })
 
-app.get("/", (req, res) =>{
-    res.send("This is the root path");
-});
-
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -53,8 +58,22 @@ app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, "/public")));
 app.engine('ejs', ejsMate);
 
+
+const store = MongoStore.create({ //since data base is in mongo and we store session info in it
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: process.env.SECRETE
+    },
+    touchAfter: 24*3600, //in seconds
+});
+
+store.on("error", () => {
+    console.log("ERROR in Mongo Session Store", err)
+});
+
 const sessionOption = {
-    secret: "mysupersecretcode",
+    store: store,
+    secret: process.env.SECRETE,
     resave: false,
     saveUninitialized: true,
     cookie : {
@@ -63,6 +82,7 @@ const sessionOption = {
         httpOnly : true,
     },
 }; //no typos here dog
+
 
 app.use(session(sessionOption));
 app.use(flash());

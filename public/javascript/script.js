@@ -24,8 +24,9 @@
   const rangeOutput = document.getElementById('rangeValue');
 
   // Set initial value
+ if (rangeInput && rangeOutput) {
   rangeOutput.textContent = rangeInput.value;
-
-  rangeInput.addEventListener('input', function() {
+  rangeInput.addEventListener('input', function () {
     rangeOutput.textContent = this.value;
   });
+}
