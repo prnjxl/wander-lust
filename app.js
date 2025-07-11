@@ -33,6 +33,9 @@ const listingsRouter = require("./routes/listing.js");
 const reviewsRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
+const marked = require("marked");
+const fs = require("fs");
+
 
 async function main() {
     await mongoose.connect(dbUrl);

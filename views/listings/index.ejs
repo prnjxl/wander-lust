@@ -1,66 +1,4 @@
 <% layout("layouts/boilerplate") %>
-    <style>
-        #filters {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .filter {
-            text-align: center;
-            margin-right: 1.5rem;
-            margin-top: 1rem;
-            opacity: 0.7;
-        }
-        
-        .filter p {
-        position: relative;
-        display: inline-block;
-        font-size: 0.8rem;
-        padding-bottom: 7px;
-        }
-
-        .filter:hover {
-            opacity: 1;
-            cursor: pointer;
-        }
-
-        .filter p::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 2px;
-            width: 100%;
-            background-color: black; /* change to your preferred color */
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease-in-out;
-        }
-
-        .filter:hover p::after {
-            transform: scaleX(1);
-        }
-
-        .tax-info {
-            display: none;
-        }
-
-        .tax {
-            opacity: 0.7;
-        }
-
-        .tax-toggle {
-            border: 2px solid rgba(0, 0, 0, 0.55);
-            border-radius: 1rem;
-            height: 3.25rem;
-            padding: 0.8rem;
-            margin-left: 1.5rem; /*right most point of the page below the navbar*/
-            display: flex;
-            align-items: center;
-        }
-    </style>
-
     <div id="filters">
         <div class="filter">
             <div><i class="fa-solid fa-fire"></i></div>
@@ -109,8 +47,8 @@
 
         <div class="tax-toggle">
             <div class="form-switch form-check-reverse">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label tax" for="flexSwitchCheckDefault">Display total after Taxes</label>
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault"><br>
+                <label class="form-check-label tax" for="flexSwitchCheckDefault">Enable Taxes</label>
             </div>
         </div>
     </div>
@@ -138,17 +76,3 @@
         <% } %>
         
     </div>
-
-    <script>
-        let taxSwitch = document.getElementById("flexSwitchCheckDefault");
-        taxSwitch.addEventListener("click", () => {
-            let taxInfo = document.getElementsByClassName("tax-info");
-            for(info of taxInfo){
-                if(info.style.display != "inline"){
-                    info.style.display = "inline";
-                } else {
-                    info.style.display = "none";
-                }
-            }
-        });
-    </script>

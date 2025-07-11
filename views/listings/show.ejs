@@ -5,12 +5,12 @@
 </script>
 
 <div class="row">
-    <div class="col-8 offset-3">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">
     <br>
     <h3 class="title"><%= listing.title %></h3>
 
     </div>
-    <div class="card listing-card col-6 offset-3 show-card">
+    <div class="card listing-card col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3 show-card">
         <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="<% listing.image.filename %>">
         <div class="card-body">
             <p class="card-text">
@@ -20,7 +20,7 @@
                 <em><%= listing.description %></em>
             </p>
             <p class="card-text">
-                Starting at just &nbsp;<b>&#8377;<%= listing.price.toLocaleString("en-IN") %></b> /night
+                Starting at just &nbsp;<b style="font-weight: 600;">&#8377;<%= listing.price.toLocaleString("en-IN") %></b> /night
             </p>
             <p class="card-text">
                 <%= listing.location %>, <%= listing.country %>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <% if (currUser && currUser._id.equals(listing.owner._id)) { %>
-        <div class="btns col-6 offset-3">
+        <div class="btns col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">
             <form method="GET" action="/listings/<%= listing._id %>/edit">
                 <button class="btn btn-dark col-12  edit-btn">Edit</button>
             </form>
@@ -38,7 +38,7 @@
         </div>
     <% } %>
 
-    <div class="col-8 offset-3 mt-3">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">
     <% if (currUser) { %>
         <h4>Leave a Review</h4>
         <hr>
@@ -48,7 +48,7 @@
                 <input class="form-range" name="review[rating]" type="range" min="1" max="5" id="rating"><br>
             </div> -->
 
-            <div class="mb-3 mt-3">
+            <div class="mt-3">
             <label for="rating">Rating</label><br>
             <fieldset class="starability-basic mt-2">
                 <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
@@ -99,8 +99,8 @@
         </div>
         <% } %>
     </div>
-    <div class="col-8 offset-3 mt-3 mb-3">
-            <h3>Where you'll be</h3>
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 offset-sm-1 offset-md-2 offset-lg-3">
+            <h4>Where you'll be</h4>
             <div id="map"></div>
             <br>
     </div>
