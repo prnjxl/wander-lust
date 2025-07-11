@@ -6,6 +6,11 @@ body {
     min-height: 100vh;
 }
 
+.card-text b {
+    font-size: 15px;
+    font-weight: 330;
+}
+
 .container {
     flex: 1;
 }
@@ -16,9 +21,25 @@ body {
 
 /* Navbar*/
 .navbar{
-    height: 4.5rem;
+    font-size: .8rem;
+    height: 4rem;
     background-color: white;
 }
+
+.btn-search {
+    background-color: white !important;
+    color: rgba(36, 30, 30, 0.662) !important;
+}
+
+.btn-search:focus,
+.btn-search:active {
+  border: none;
+  box-shadow: none;
+  background-color: transparent; /* Optional: keep your button color consistent */
+  border-color: transparent;     /* Optional: adjust as per your design */
+  color: #000000 !important;
+}
+
 
 .fa-compass {
     color: #fe424d;
@@ -30,12 +51,18 @@ body {
 }
 
 .f-info-links a{
+    font-size: 0.8rem;
     text-decoration: none;
     color: #222222;
+    cursor: pointer;
 }
 
-.f-info-links a:hover {
+/* .f-info-links a:hover {
     text-decoration: underline;
+} */
+
+.f-info-brand {
+    font-size: 0.8rem;
 }
 
 .f-info-links, .f-info-socials, .f-info-brand  {
@@ -43,9 +70,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    
 }
 
 .f-info-socials i {
+    cursor: pointer;
     margin-right: 1rem;
     font-size: 1.2rem;
 }
@@ -53,9 +82,9 @@ body {
 .f-info {
     text-align: center;
     background-color: #ebebeb;
-    height: 8rem;
+    height: 7rem;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: center;
     align-items: space-evenly ;
 }
@@ -135,8 +164,79 @@ p {
     padding: 10px !important;
 }
 
-/*Map*/
+/* Map */
 #map {
-    height: 400px;
+    height: 250px;
     width: 80vh;
+}
+
+/* Filters and Tax Switch */
+#filters {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter {
+            text-align: center;
+            margin-right: 1.5rem;
+            margin-top: 1rem;
+            opacity: 0.7;
+        }
+        
+        .filter p {
+        position: relative;
+        display: inline-block;
+        font-size: 0.8rem;
+        padding-bottom: 7px;
+        }
+
+        .filter:hover {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .filter p::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            width: 100%;
+            background-color: black; /* change to your preferred color */
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .filter:hover p::after {
+            transform: scaleX(1);
+        }
+
+        .tax-info {
+            display: none;
+        }
+
+        .tax {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-left: 3.5rem; 
+            padding-top: 0px !important;
+        }
+
+        .form-check-input {
+            border-radius: 5px !important;
+        }
+
+        .tax-toggle {
+            height: 3rem;
+            padding: 0.8rem 0.8rem 0.8rem 0.8rem;
+            /*right most point of the page below the navbar*/
+            display: flex;
+            align-items: center;
+        }
+
+.form-switch.form-check-reverse .form-check-input {
+    margin-top: 5px !important;
+    margin-right: 2.5rem !important;
 }
